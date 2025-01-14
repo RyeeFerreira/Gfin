@@ -3,28 +3,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useFonts } from 'expo-font';
 import { ActivityIndicator } from 'react-native';
-import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 
 
 import Login from './src/pages/login';
 import Senha from './src/pages/esqueceuSenha';
 import Cadastrar from './src/pages/cadastrar';
 import inicio from './src/pages/inicio';
+import { SQLiteProvider } from 'expo-sqlite';
+import { initializeDatabase } from './src/database/initializeDatabase';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAHbzTZHudGrSIznuX3_7gHDZ83CnXt98E",
-  authDomain: "bdgf-dd7b4.firebaseapp.com",
-  projectId: "bdgf-dd7b4",
-  storageBucket: "bdgf-dd7b4.firebasestorage.app",
-  messagingSenderId: "103024531131",
-  appId: "1:103024531131:web:26579b5fec24c3deaa3b9e",
-  measurementId: "G-P533GDX2TM"
-};
 
-// Inicialize o Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 // Defina os tipos das rotas
 type RootStackParamList = {
@@ -46,6 +34,7 @@ export default function App() {
   }
 
   return (
+    <SQLiteProvider databaseName='database' onInit={initializeDatabase}>
     <NavigationContainer>
       <StatusBar style="auto" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -56,5 +45,6 @@ export default function App() {
         
       </Stack.Navigator>
     </NavigationContainer>
+    </SQLiteProvider>
   );
 }
