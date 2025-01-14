@@ -9,6 +9,8 @@ import Login from './src/pages/login';
 import Senha from './src/pages/esqueceuSenha';
 import Cadastrar from './src/pages/cadastrar';
 import inicio from './src/pages/inicio';
+import { SQLiteProvider } from 'expo-sqlite';
+import { initializeDatabase } from './src/database/initializeDatabase';
 
 
 
@@ -32,6 +34,7 @@ export default function App() {
   }
 
   return (
+    <SQLiteProvider databaseName='database' onInit={initializeDatabase}>
     <NavigationContainer>
       <StatusBar style="auto" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -42,5 +45,6 @@ export default function App() {
         
       </Stack.Navigator>
     </NavigationContainer>
+    </SQLiteProvider>
   );
 }

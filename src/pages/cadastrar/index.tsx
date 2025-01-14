@@ -1,12 +1,6 @@
-import React, { useState, useEffect} from 'react';
-import {
-    View,
-    Text,
-    TextInput,
-    Image,
-    TouchableOpacity,
-    Alert,
-  } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Image, TouchableOpacity, Alert} from 'react-native';
+import { useUsuarioDatabase } from '../../database/useUsuarioDatabase';
 
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from './styles';
@@ -17,16 +11,16 @@ import { RouteProp } from '@react-navigation/native';
 
 //#region NavegaçãoConfig
 type RootStackParamList = {
-    Login: undefined;
-    Cadastrar: undefined;
+  Login: undefined;
+  Cadastrar: undefined;
 };
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Cadastrar'>;
 type LoginScreenRouteProp = RouteProp<RootStackParamList, 'Cadastrar'>;
 
 type Props = {
-    navigation: LoginScreenNavigationProp;
-    route: LoginScreenRouteProp;
+  navigation: LoginScreenNavigationProp;
+  route: LoginScreenRouteProp;
 };
 //#endregion
 
@@ -34,24 +28,36 @@ export default function CriarConta({ navigation }: Props) {
   const [senhaVisivel, setSenhaVisivel] = useState(false);
   const [repetirSenhaVisivel, setRepetirSenhaVisivel] = useState(false);
 
-  const [nome, setNome] = useState("");
+  const [name, setname] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [repetirSenha, setRepetirSenha] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
 
-    
- useEffect(() => {
-   if (nome.trim() === '' || email.trim() === '' || senha.trim() === '' || repetirSenha.trim() === '') {
-        setIsDisabled(true); 
-    } else {
-        setIsDisabled(false); 
+  const usuarioDatabase = useUsuarioDatabase();
+ 
+  async function create(){
+    try{
+      const respose = await usuarioDatabase.create({name, email, senha})
+
+      Alert.alert("Usuario cadastrado com o ID:" + respose.insertedRowId)
+    }catch (error){
+      Alert.alert("Erro ao cadastrar")
+      console.log(error)
     }
-}, [nome, email, senha, repetirSenha]);
+  }
+
+  useEffect(() => {
+    if (name.trim() === '' || email.trim() === '' || senha.trim() === '' || repetirSenha.trim() === '') {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [name, email, senha, repetirSenha]);
 
   const validarCampos = () => {
-    if (!nome.trim()) {
-      Alert.alert("Erro", "O campo Nome é obrigatório.");
+    if (!name.trim()) {
+      Alert.alert("Erro", "O campo name é obrigatório.");
       return false;
     }
     if (!email.trim()) {
@@ -71,50 +77,53 @@ export default function CriarConta({ navigation }: Props) {
 
   const cadastrar = () => {
     if (validarCampos()) {
-      Alert.alert("Sucesso", "Conta criada com sucesso!");
+      create();
       navigation.navigate("Login");
+    }else{
+      Alert.alert("erro ao cadastrar1")
     }
   };
 
-    return ( 
-    <LinearGradient 
-    colors={['#14130D','#14130D', '#14130D','#2E2A2A']} 
-    start={{x:0.00, y:0}}
-    end={{x:1, y:1}}
-    style={styles.linearGradient} >
+
+  return (
+    <LinearGradient
+      colors={['#14130D', '#14130D', '#14130D', '#2E2A2A']}
+      start={{ x: 0.00, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={styles.linearGradient} >
       <View style={styles.container}>
         <View style={styles.header}>
-            <View>
-                {/* Botão Voltar */}
-                <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.voltar}>
-                    <Ionicons name="arrow-back" size={20} color="#005E72" />
-                    <Text style={styles.voltarTexto}>VOLTAR</Text>
-                </TouchableOpacity>
-                
-                {/* Titulo */}
-                <Text style={styles.titulo}>Criar Conta</Text>
-            </View>
+          <View>
+            {/* Botão Voltar */}
+            <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.voltar}>
+              <Ionicons name="arrow-back" size={20} color="#005E72" />
+              <Text style={styles.voltarTexto}>VOLTAR</Text>
+            </TouchableOpacity>
 
-            {/* Logo */}
-            <View>
-                <Image source={Logo} style={styles.logo} />
-            </View>
+            {/* Titulo */}
+            <Text style={styles.titulo}>Criar Conta</Text>
+          </View>
+
+          {/* Logo */}
+          <View>
+            <Image source={Logo} style={styles.logo} />
+          </View>
         </View>
-           
-            
+
+
 
         {/* Formulário */}
         <View style={styles.form}>
-          {/* Nome */}
+          {/* name */}
           <Text style={styles.label}>Nome</Text>
           <TextInput
-            value={nome}
-            onChangeText={setNome}
-            style={[styles.input, !nome.trim() && styles.inputError]}
+            value={name}
+            onChangeText={setname}
+            style={[styles.input, !name.trim() && styles.inputError]}
             placeholder="Digite seu nome"
             placeholderTextColor="#7B7B7B"
           />
-  
+
           {/* E-mail */}
           <Text style={styles.label}>E-mail</Text>
           <TextInput
@@ -125,7 +134,7 @@ export default function CriarConta({ navigation }: Props) {
             placeholderTextColor="#7B7B7B"
             keyboardType="email-address"
           />
-  
+
           {/* Senha */}
           <Text style={styles.label}>Senha</Text>
           <View style={styles.inputContainer}>
@@ -147,13 +156,13 @@ export default function CriarConta({ navigation }: Props) {
               />
             </TouchableOpacity>
           </View>
-  
+
           {/* Repetir Senha */}
           <Text style={styles.label}>Repita a Senha</Text>
           <View style={styles.inputContainer}>
             <TextInput
-            value={repetirSenha}
-            onChangeText={setRepetirSenha}
+              value={repetirSenha}
+              onChangeText={setRepetirSenha}
               style={styles.inputComIcone}
               placeholder="Digite novamente uma senha"
               placeholderTextColor="#A6A6A6"
@@ -170,16 +179,16 @@ export default function CriarConta({ navigation }: Props) {
             </TouchableOpacity>
           </View>
         </View>
-  
+
         {/* Botão Cadastrar */}
         <View style={styles.btn}>
-        <TouchableOpacity onPress={cadastrar} style={[styles.botaoCadastrar, isDisabled && styles.buttonDisabled]}>
-          <Text style={styles.botaoTexto}>CADASTRAR</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={cadastrar} style={[styles.botaoCadastrar, isDisabled && styles.buttonDisabled]}>
+            <Text style={styles.botaoTexto}>CADASTRAR</Text>
+          </TouchableOpacity>
         </View>
       </View>
-      </LinearGradient>
-    );
+    </LinearGradient>
+  );
 }
-  
-  
+
+

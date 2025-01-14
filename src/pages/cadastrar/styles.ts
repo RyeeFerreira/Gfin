@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
       borderRadius: 8,
       paddingHorizontal: 16,
       paddingVertical: 15,
-      marginBottom: 30,
+      marginBottom: 1,
       fontFamily: "InrianSans",
       fontSize: 16,
     },
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#1A1913',
       borderRadius: 8,
-      marginBottom: 30,
+      marginBottom: 1,
       fontFamily: "InrianSans",
     },
 
@@ -98,8 +98,15 @@ export const styles = StyleSheet.create({
     }, 
 
     btn: {
-        alignSelf: 'flex-end',
-        width:'50%',
+      backgroundColor: "#0097B2",
+      borderColor:  "#0097C0",
+      borderWidth: 0.5,
+      width: "70%",
+      height: "7%",
+      marginTop: "15%",
+      borderRadius: 100,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
 
     botaoCadastrar: {
