@@ -42,8 +42,7 @@ export default function Login({ navigation }: Props) {
                     return navigation.navigate('Inicio');
                 } else {
                     return   Alert.alert("Usuario não encontrado")
-            } 
-                    Alert.alert("Por favor, preencha os campos antes de continuar.");
+            }       
             }
 
             }catch (error) {
