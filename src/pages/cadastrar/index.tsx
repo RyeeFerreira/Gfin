@@ -63,6 +63,9 @@ export default function CriarConta({ navigation }: Props) {
     if (!email.trim()) {
       Alert.alert("Erro", "O campo E-mail é obrigatório.");
       return false;
+    }else if(!email.includes("@") || !email.includes(".com")){
+      Alert.alert("Erro", "O campo E-mail é invalido.");
+      return false;
     }
     if (!senha.trim()) {
       Alert.alert("Erro", "O campo Senha é obrigatório.");
