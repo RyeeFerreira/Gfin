@@ -8,11 +8,28 @@ import { useFonts } from 'expo-font';
 import Logo from "../../assets/images/Gfin.png";
 
 
+
+
+
+
 export default function inicio() {
     return (
-        <View>
-        </View>
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <Image style={styles.logo} source={Logo} />
+            </View>
+            <View style={styles.body}>
+                <View style={styles.saldo}>
+                    <Text>20000</Text>
+                </View>
+                <View style={styles.grafico}>
+                    <Text>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Text>
+                </View>
+                <View style={styles.historico}>
+                </View>
 
+            </View>
+        </View>
     )
 }
 
