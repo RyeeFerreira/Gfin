@@ -1,52 +1,56 @@
-import {StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 
 
 
 export const styles = StyleSheet.create({
+    scrollContent: {
+        flexGrow: 1,
+    },
+
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5
+    },
 
     container: {
-        backgroundColor: "#2E2A2A",
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        fontFamily: "InrianSans"
+        flex: 1,
+        padding: 25,
+        marginTop: '30%',
     },
 
     logo: {
-        width: 100,
-        height: 100,
+        marginLeft: 'auto', //melhorar
+        marginRight: 'auto',
+        width: '30%',
+        height: '15%',
         borderRadius: 100,
-        marginTop: 70
+        marginBottom: "15%"
     },
 
-    grupo1: {
-        marginTop: "45%",
-        width: "90%",
-        height: "7%"
-    },
-
-    grupo2: {
-        marginTop: "15%",
-        width: "90%",
-        height: "7%"
+    form: {
+        marginBottom: '2%'
     },
 
     label: {
-        color: "#D7CCCC",
+        color: '#FFFFFF', // Cor do texto do label
         fontSize: 16,
+        marginBottom: '5%',
+        fontWeight: 'light',
         fontFamily: "InrianSans",
-        margin: "1%"
     },
 
     input: {
-        height: "100%",
-        backgroundColor: "#555555",
-        borderRadius: 10,
+        backgroundColor: '#1A1913',
+        color: '#D2D2D2',
+        borderRadius: 8,
+        paddingHorizontal: 16,
+        paddingVertical: 15,
+        marginBottom: '5%',
         fontFamily: "InrianSans",
         fontSize: 16,
-    
     },
 
     grupo3: {
@@ -63,30 +67,29 @@ export const styles = StyleSheet.create({
         textShadowColor: "#007AFF",
         textShadowRadius: 5,
         fontFamily: "InrianSans",
-        fontSize: 15
+        fontSize: 15,
+        textDecorationLine: 'underline'
     },
-
-
     button: {
-        backgroundColor: "#0097B2",
-        borderColor:  "#0097C0",
+        margin: 'auto',
+        backgroundColor: "#005E72",
         borderWidth: 0.5,
         width: "70%",
-        height: "7%",
+        height: "7.5%",
         marginTop: "15%",
-        borderRadius: 100,
+        borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
-
     },
 
     buttonText: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        fontWeight: 'bold',
         fontFamily: "InrianSans",
-        color: "#FFFEFE",
-        fontSize: 24
     },
 
-    buttonDisabled:{
-        backgroundColor: '#CCCCCC',
+    buttonDisabled: {
+        backgroundColor: '#5A5A5A',
     }
 });
