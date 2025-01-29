@@ -9,6 +9,7 @@ import Login from './src/pages/login';
 import Senha from './src/pages/esqueceuSenha';
 import Cadastrar from './src/pages/cadastrar';
 import inicio from './src/pages/inicio';
+import Historico from './src/pages/historico';
 import { SQLiteProvider } from 'expo-sqlite';
 import { initializeDatabase } from './src/database/initializeDatabase';
 
@@ -20,6 +21,7 @@ type RootStackParamList = {
   Senha: undefined;
   Cadastrar: undefined;
   Inicio: undefined;
+  Historico: undefined;  
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -42,7 +44,7 @@ export default function App() {
         <Stack.Screen name="Senha" component={Senha} />
         <Stack.Screen name="Cadastrar" component={Cadastrar} />
         <Stack.Screen name="Inicio" component={inicio} />
-        
+        <Stack.Screen name="Historico" component={Historico} />
       </Stack.Navigator>
     </NavigationContainer>
     </SQLiteProvider>

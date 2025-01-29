@@ -53,6 +53,27 @@ export const styles = StyleSheet.create({
         fontSize: 16,
     },
 
+    icon: {
+        paddingHorizontal: 10,
+    },
+
+    inputContainer :{
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#1A1913',
+        borderRadius: 8,
+        marginBottom: '5%',
+        fontFamily: "InrianSans",
+    },
+
+    inputComIcone: {
+        flex: 1,
+        color: '#D2D2D2',
+        paddingHorizontal: 15,
+        paddingVertical: 15,
+        fontFamily: "InrianSans",
+      },
+      
     grupo3: {
         width: "90%",
         display: "flex",
