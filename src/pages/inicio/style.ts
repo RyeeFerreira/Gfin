@@ -32,9 +32,7 @@ export const styles = StyleSheet.create({
     saldo:{},
     grafico:{
         width: "90%",
-        height: 200,
-        borderStyle: "solid",
-        borderWidth: 1,
+        height: 220,
     },
     historico:{
 
