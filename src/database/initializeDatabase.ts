@@ -27,7 +27,9 @@ export async function initializeDatabase(database: SQLiteDatabase) {
             valor FLOAT NOT NULL,
             categoria VARCHAR(45) NOT NULL,
             data DATETIME NOT NULL,
-            descricao TEXT NOT NULL,
+            descricao TEXT,
+            repeticao BOOLEAN,
+            data_repeticao DATETIME,
             FOREIGN KEY (conta_id) REFERENCES contas(id)
         );
     `);

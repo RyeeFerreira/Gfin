@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
     logo: {
         marginLeft: 'auto', //melhorar
         marginRight: 'auto',
-        width: '30%',
-        height: '15%',
+        width: 100,
+        height: 100,
         borderRadius: 100,
         marginBottom: "15%"
     },
