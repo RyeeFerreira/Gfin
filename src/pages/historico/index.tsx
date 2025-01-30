@@ -50,7 +50,7 @@ export default function Historico({ navigation }: Props) {
                     <View style={styles.container}>
                         <View style={styles.header}>
                             <View>
-                                <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.voltar}>
+                                <TouchableOpacity onPress={() => navigation.navigate('Inicio')} style={styles.voltar}>
                                     <Ionicons name="arrow-back" size={20} color="#005E72" />
                                     <Text style={styles.voltarTexto}>VOLTAR</Text>
                                 </TouchableOpacity>
