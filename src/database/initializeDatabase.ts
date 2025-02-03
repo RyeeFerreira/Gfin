@@ -20,7 +20,7 @@ export async function initializeDatabase(database: SQLiteDatabase) {
     `);
 
     await database.execAsync(`
-        CREATE TABLE IF NOT EXISTS produtos(
+        CREATE TABLE IF NOT EXISTS itens(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             conta_id INTEGER NOT NULL,
             titulo VARCHAR(45) NOT NULL,
@@ -30,6 +30,7 @@ export async function initializeDatabase(database: SQLiteDatabase) {
             descricao TEXT,
             repeticao BOOLEAN,
             data_repeticao DATETIME,
+            tipo_de_saldo BOOLEAN NOT NULL,
             FOREIGN KEY (conta_id) REFERENCES contas(id)
         );
     `);

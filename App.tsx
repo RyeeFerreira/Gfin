@@ -8,7 +8,8 @@ import { ActivityIndicator } from 'react-native';
 import Login from './src/pages/login';
 import Senha from './src/pages/esqueceuSenha';
 import Cadastrar from './src/pages/cadastrar';
-import inicio from './src/pages/inicio';
+import Inicio from './src/pages/telas_principais/inicio';
+import AdicionarItem from './src/pages/telas_principais/criar_item';
 import { SQLiteProvider } from 'expo-sqlite';
 import { initializeDatabase } from './src/database/initializeDatabase';
 
@@ -20,6 +21,7 @@ type RootStackParamList = {
   Senha: undefined;
   Cadastrar: undefined;
   Inicio: undefined;
+  AdicionarItem: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -41,7 +43,8 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Senha" component={Senha} />
         <Stack.Screen name="Cadastrar" component={Cadastrar} />
-        <Stack.Screen name="Inicio" component={inicio} />
+        <Stack.Screen name="Inicio" component={Inicio} />
+        <Stack.Screen name="AdicionarItem" component={AdicionarItem} />
         
       </Stack.Navigator>
     </NavigationContainer>

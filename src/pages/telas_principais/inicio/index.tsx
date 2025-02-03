@@ -3,13 +3,33 @@ import React from "react";
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 
 import { styles } from './style';
-import Logo from "../../assets/images/Gfin.png";
+import Logo from "../../../assets/images/Gfin.png";
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { LineChart } from "react-native-chart-kit";
 
+// Define os tipos das rotas
+type RootStackParamList = {
+    Inicio: undefined;
+    AdicionarItem: undefined;
+};
+
+// Tipo para a propriedade de navegação
+type InicioScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Inicio'>;
+
+// Tipo para a propriedade de rota (opcional)
+type InicioScreenRouteProp = RouteProp<RootStackParamList, 'Inicio'>;
+
+// Props do componente
+type Props = {
+    navigation: InicioScreenNavigationProp;
+    route: InicioScreenRouteProp;
+};
 
 
 
-export default function inicio() {
+export default function inicio({ navigation }: Props) {
     const data = [20, 45, 28, 80, 99, 43, 50];
 
     return (
@@ -22,7 +42,7 @@ export default function inicio() {
                     <Text>20000</Text>
                 </View>
                 <View style={styles.grafico}>
-                <LineChart 
+                    <LineChart
                         data={{
                             labels: data.map((_, index) => index.toString()),
                             datasets: [
@@ -31,7 +51,7 @@ export default function inicio() {
                                 }
                             ]
                         }}
-                        width= {350}
+                        width={350}
                         height={220}
                         chartConfig={{
                             backgroundGradientFrom: "#14130D",
@@ -57,6 +77,11 @@ export default function inicio() {
                     </View>
                 </View>
                 <View style={styles.historico}>
+                </View>
+                <View>
+                    <TouchableOpacity style={styles.adicionar} onPress={() => navigation.navigate('AdicionarItem')}>
+                        <Text style={styles.adicionar}>Adicionar</Text>
+                    </TouchableOpacity>
                 </View>
 
             </View>

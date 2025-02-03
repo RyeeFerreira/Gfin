@@ -37,4 +37,15 @@ export const styles = StyleSheet.create({
     historico:{
 
     },
+
+    adicionar:{
+        backgroundColor: "#005E72",
+        width: "90%",
+        height: 50,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 8,
+        marginBottom: 20,
+    },
 });
