@@ -6,10 +6,12 @@ import { ActivityIndicator } from 'react-native';
 
 
 import Login from './src/pages/login';
-import Senha from './src/pages/esqueceuSenha';
+import EsqueceuSenha from './src/pages/esqueceuSenha';
 import Cadastrar from './src/pages/cadastrar';
 import Inicio from './src/pages/telas_principais/inicio';
-import AdicionarItem from './src/pages/telas_principais/criar_item';
+import AdicionarItem from './src/pages/telas_principais/adicionarItem';
+import Historico from './src/pages/telas_principais/historico';
+
 import { SQLiteProvider } from 'expo-sqlite';
 import { initializeDatabase } from './src/database/initializeDatabase';
 
@@ -18,10 +20,12 @@ import { initializeDatabase } from './src/database/initializeDatabase';
 // Defina os tipos das rotas
 type RootStackParamList = {
   Login: undefined;
-  Senha: undefined;
+  EsqueceuSenha: undefined;
   Cadastrar: undefined;
   Inicio: undefined;
+  Historico: undefined;  
   AdicionarItem: undefined;
+
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -41,10 +45,11 @@ export default function App() {
       <StatusBar style="auto" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Senha" component={Senha} />
+        <Stack.Screen name="EsqueceuSenha" component={EsqueceuSenha} />
         <Stack.Screen name="Cadastrar" component={Cadastrar} />
         <Stack.Screen name="Inicio" component={Inicio} />
         <Stack.Screen name="AdicionarItem" component={AdicionarItem} />
+        <Stack.Screen name="Historico" component={Historico} />
         
       </Stack.Navigator>
     </NavigationContainer>

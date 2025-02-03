@@ -4,7 +4,6 @@ import { useUsuarioDatabase } from '../../database/useUsuarioDatabase';
 
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from './styles';
-import Logo from "../../assets/images/Gfin.png";
 import { LinearGradient } from 'expo-linear-gradient';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
@@ -15,12 +14,12 @@ type RootStackParamList = {
   Cadastrar: undefined;
 };
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Cadastrar'>;
-type LoginScreenRouteProp = RouteProp<RootStackParamList, 'Cadastrar'>;
+type CadastrarScreenNavigation = StackNavigationProp<RootStackParamList, 'Cadastrar'>;
+type CadastrarScreenRoute = RouteProp<RootStackParamList, 'Cadastrar'>;
 
 type Props = {
-  navigation: LoginScreenNavigationProp;
-  route: LoginScreenRouteProp;
+  navigation: CadastrarScreenNavigation;
+  route: CadastrarScreenRoute;
 };
 //#endregion
 
