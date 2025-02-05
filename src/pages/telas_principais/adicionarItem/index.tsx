@@ -26,7 +26,21 @@ type Props = {
 
 export default function adicionarItem({ navigation }: Props) {
 
-    const [selectedValue, setSelectedValue] = useState("lazer");
+    const [titulo, setTitulo] = useState("");
+    const [tipo_de_saldo, setTipo_de_saldo] = useState(false);
+    const [valor, setValor] = useState("");
+    const [categoria, setcategoria] = useState("lazer");
+    const [data, setData] = useState(new Date());
+    const [descricao, setDescricao] = useState("");
+    const [repeticao, setRepeticao] = useState(false);
+    const [data_repeticao, setData_repeticao] = useState(new Date());
+
+   
+
+    useEffect(() => {
+        Alert.alert(`${data}`);
+    }, [data]);
+
     return (
         <KeyboardAvoidingView style={styles.scrollContent} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
             <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -49,11 +63,15 @@ export default function adicionarItem({ navigation }: Props) {
                         <View style={styles.form}>
                             <Text style={styles.label}>Titulo</Text>
                             <TextInput
+                                value={titulo}
+                                onChangeText={setTitulo}
                                 placeholder="Digite o titulo do item"
                                 placeholderTextColor="#7B7B7B"
                             />
                             <Text style={styles.label}>Valor</Text>
                             <TextInput
+                                value={valor}
+                                onChangeText={setValor}
                                 style={styles.input}
                                 placeholder="Digite o valor do item"
                                 placeholderTextColor="#7B7B7B"
@@ -64,8 +82,8 @@ export default function adicionarItem({ navigation }: Props) {
                             <View style={styles.pickerContainer}>
                                 <Picker
                                     style={styles.picker}
-                                    selectedValue={selectedValue}
-                                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                                    selectedValue={categoria}
+                                    onValueChange={(itemValue, itemIndex) => setcategoria(itemValue)}
                                 >
                                     <Picker.Item label="Lazer" value="lazer" />
                                     <Picker.Item label="Conta" value="conta" />
@@ -74,14 +92,9 @@ export default function adicionarItem({ navigation }: Props) {
                                 </Picker>
                             </View>
 
-
                             <Text style={styles.label}>Data</Text>
                             <View style={styles.inputContainer}>
-                                <TextInput
-                                    style={styles.inputComIcone}
-                                    placeholder="Digite a data do item"
-                                    placeholderTextColor="#A6A6A6"
-                                />
+                                <TextInput> aaaa</TextInput>
                             </View>
                             <Text style={styles.label}>Descrição</Text>
                             <View style={styles.inputContainer}>
