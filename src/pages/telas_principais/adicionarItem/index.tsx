@@ -35,11 +35,6 @@ export default function adicionarItem({ navigation }: Props) {
     const [repeticao, setRepeticao] = useState(false);
     const [data_repeticao, setData_repeticao] = useState(new Date());
 
-   
-
-    useEffect(() => {
-        Alert.alert(`${data}`);
-    }, [data]);
 
     return (
         <KeyboardAvoidingView style={styles.scrollContent} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
@@ -94,7 +89,9 @@ export default function adicionarItem({ navigation }: Props) {
 
                             <Text style={styles.label}>Data</Text>
                             <View style={styles.inputContainer}>
-                                <TextInput> aaaa</TextInput>
+                                <TextInput
+                                    placeholder="Digite a data"
+                                />
                             </View>
                             <Text style={styles.label}>Descrição</Text>
                             <View style={styles.inputContainer}>
