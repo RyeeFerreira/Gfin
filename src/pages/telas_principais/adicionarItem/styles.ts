@@ -53,8 +53,44 @@ export const styles = StyleSheet.create({
     marginBottom: '2%',
   },
 
+  radioButtonContainer: {
+    marginBottom: '5%',
+  },
+
+  radioButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+
+  radioUnselected: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#B2A6A6',
+    marginRight: 10,
+  },
+
+  radioSelected: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#005E72',
+    borderWidth: 2,
+    borderColor: '#FFF',
+    marginRight: 10,
+  },
+
+  radioText: {
+    fontSize: 16,
+    fontWeight: 'light',
+    fontFamily: "InrianSans",
+    color: '#FFFFFF', 
+  },
+  
   label: {
-    color: '#FFFFFF', // Cor do texto do label
+    color: '#FFFFFF',
     fontSize: 16,
     marginBottom: '5%',
     fontWeight: 'light',
@@ -71,22 +107,6 @@ export const styles = StyleSheet.create({
     fontFamily: "InrianSans",
     fontSize: 16,
   },
-  pickerContainer: {
-    width: "90%",
-    height: 50,
-    backgroundColor: '#1A1913',
-    borderRadius: 8, // Adicionando borderRadius
-    overflow: 'hidden', // Necessário para aplicar o borderRadius ao Picker
-    marginBottom: '5%',
-},
-
-picker: {
-    width: "100%",
-    height: "100%",
-    color: '#D2D2D2',
-    fontFamily: "InrianSans",
-    fontSize: 16,
-},
 
   inputContainer: {
     flexDirection: 'row',
@@ -129,5 +149,45 @@ picker: {
 
   buttonDisabled: {
     backgroundColor: '#5A5A5A',
+  },
+
+  categoriaContainer: { 
+    marginBottom: '5%',
+  },  
+
+  dropdown: {
+    backgroundColor: "#1A1913",
+    marginBottom: '5%',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 8,
+  },
+  
+  lista:{
+    backgroundColor: "#1A1913",
+    marginTop: 0,
+    width: 290 // estatico por enquanto
+  },
+
+  item: {
+    margin: 0,
+    width: '100%',
+    backgroundColor: "#1A1913",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 5,
+    borderBottomWidth: 5,
+    borderBottomColor: "#14130D",
+    borderRadius: 4,
+  },
+
+  selectedItem: {
+    borderWidth: 2,
+    borderColor: "14130D",
+  },
+
+  itemText: {
+    fontSize: 15,
+    color: "white",
   }
   });

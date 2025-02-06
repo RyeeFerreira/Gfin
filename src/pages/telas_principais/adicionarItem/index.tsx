@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView, Platform, KeyboardAvoidingView } from 'react-native';
-
+import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView, Platform, KeyboardAvoidingView, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from './styles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import { Picker } from '@react-native-picker/picker';
-
+import { Checkbox, Menu, Button } from "react-native-paper";
+import { Provider as PaperProvider } from 'react-native-paper';
+import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
 
 //#region NavegaçãoConfig
 type RootStackParamList = {
@@ -25,9 +25,34 @@ type Props = {
 //#endregion
 
 export default function adicionarItem({ navigation }: Props) {
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<{ label: string; icon: string } | null>(null);
+    const [visible, setVisible] = useState(false);
+    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
-    const [selectedValue, setSelectedValue] = useState("lazer");
+    // Opções do Dropdown
+    const categories = [
+        { id: "1", label: "Mercado", icon: "shopping-cart" },
+        { id: "2", label: "Lazer", icon: "gamepad" },
+        { id: "3", label: "Educação", icon: "book" },
+        { id: "4", label: "Outro", icon: "dots-three-horizontal" },
+    ];
+
+    // Função para alternar seleção
+    const toggleSelection = (id: string) => {
+        setSelectedOptions((prevSelected) =>
+            prevSelected.includes(id)
+                ? prevSelected.filter((item) => item !== id)
+                : [...prevSelected, id]
+        );
+        const selected = categories.find((item) => item.id === id);
+        if (selected) {
+            setSelectedCategory(selected);
+        }
+    };
+
     return (
+        <PaperProvider>
         <KeyboardAvoidingView style={styles.scrollContent} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
             <ScrollView contentContainerStyle={styles.scrollContent}>
                 <LinearGradient
@@ -47,33 +72,78 @@ export default function adicionarItem({ navigation }: Props) {
                         </View>
 
                         <View style={styles.form}>
-                            <Text style={styles.label}>Titulo</Text>
+                            <View style={styles.radioButtonContainer}>
+                                <Text style={styles.label}>Selecione uma opção:</Text>
+                                <TouchableOpacity
+                                    style={styles.radioButton}
+                                    onPress={() => setSelectedOption('opcao1')}
+                                >
+                                    <View style={selectedOption === 'opcao1' ? styles.radioSelected : styles.radioUnselected} />
+                                    <Text style={styles.radioText}>Ganho</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.radioButton}
+                                    onPress={() => setSelectedOption('opcao2')}
+                                >
+                                    <View style={selectedOption === 'opcao2' ? styles.radioSelected : styles.radioUnselected} />
+                                    <Text style={styles.radioText}>Gasto</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={styles.categoriaContainer}>
+                                <Text style={styles.label}>Categoria</Text>
+                                <Menu
+                                    visible={visible}
+                                    onDismiss={() => setVisible(false)}
+                                    anchor={
+                                        <Button
+                                            onPress={() => setVisible(true)}
+                                            style={styles.dropdown}
+                                            
+                                        >
+                                            <Text style={styles.input}>Escolha uma categoria</Text>
+                                            <MaterialIcons name="arrow-drop-down" size={24} color="white" />
+                                        </Button>
+                                    }
+                                >
+                                    <FlatList
+                                        data={categories}
+                                        style={styles.lista}
+                                        keyExtractor={(item) => item.id}
+                                        renderItem={({ item }) => (
+                                            <TouchableOpacity
+                                                style={[
+                                                    styles.item,
+                                                    selectedOptions.includes(item.id) && styles.selectedItem,
+                                                ]}
+                                                onPress={() => toggleSelection(item.id)}
+                                            >
+                                                <FontAwesome name={item.icon as any} size={20} color="white" style={styles.icon} />
+                                                <Text style={styles.itemText}>{item.label}</Text>
+                                                <Checkbox
+                                                    status={selectedOptions.includes(item.id) ? "checked" : "unchecked"}
+                                                    onPress={() => toggleSelection(item.id)}
+                                                    color="white"
+                                                />
+                                            </TouchableOpacity>
+                                        )}
+                                    />
+                                </Menu>
+                            </View>
+
+                            <Text style={styles.label}>Título</Text>
                             <TextInput
-                                placeholder="Digite o titulo do item"
+                                style={styles.input}
+                                placeholder="Digite o título do item"
                                 placeholderTextColor="#7B7B7B"
                             />
+
                             <Text style={styles.label}>Valor</Text>
                             <TextInput
                                 style={styles.input}
                                 placeholder="Digite o valor do item"
                                 placeholderTextColor="#7B7B7B"
                             />
-
-                            <Text style={styles.label}>Categoria</Text>
-
-                            <View style={styles.pickerContainer}>
-                                <Picker
-                                    style={styles.picker}
-                                    selectedValue={selectedValue}
-                                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-                                >
-                                    <Picker.Item label="Lazer" value="lazer" />
-                                    <Picker.Item label="Conta" value="conta" />
-                                    <Picker.Item label="Comida" value="comida" />
-                                    <Picker.Item label="Mercado" value="mercado" />
-                                </Picker>
-                            </View>
-
 
                             <Text style={styles.label}>Data</Text>
                             <View style={styles.inputContainer}>
@@ -105,6 +175,7 @@ export default function adicionarItem({ navigation }: Props) {
                 </LinearGradient>
             </ScrollView>
         </KeyboardAvoidingView>
+        </PaperProvider>
     )
 }
 
