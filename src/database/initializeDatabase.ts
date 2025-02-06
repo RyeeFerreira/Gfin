@@ -24,13 +24,13 @@ export async function initializeDatabase(database: SQLiteDatabase) {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             conta_id INTEGER NOT NULL,
             titulo VARCHAR(45) NOT NULL,
+            tipo_de_saldo BOOLEAN NOT NULL,
             valor FLOAT NOT NULL,
             categoria VARCHAR(45) NOT NULL,
             data DATETIME NOT NULL,
             descricao TEXT,
             repeticao BOOLEAN,
             data_repeticao DATETIME,
-            tipo_de_saldo BOOLEAN NOT NULL,
             FOREIGN KEY (conta_id) REFERENCES contas(id)
         );
     `);
